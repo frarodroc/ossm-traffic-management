@@ -57,6 +57,13 @@ objects:
         containers:
         - name: details
           image: ${DETAILS_IMAGE}:${DETAILS_TAG}
+          securityContext:
+            allowPrivilegeEscalation: false
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+              - ALL
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 9080
@@ -77,6 +84,15 @@ objects:
               port: 9080
             initialDelaySeconds: 30
             periodSeconds: 30
+
+- apiVersion: maistra.io/v1
+  kind: ServiceMeshMember
+  metadata:
+    name: default
+  spec:
+    controlPlaneRef:
+      name: basic
+      namespace: istio-system
 
 - apiVersion: networking.istio.io/v1beta1
   kind: VirtualService
@@ -144,6 +160,13 @@ objects:
         containers:
         - name: ratings
           image: ${RATINGS_IMAGE}:${RATINGS_TAG}
+          securityContext:
+            allowPrivilegeEscalation: false
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+              - ALL
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 9080
@@ -231,6 +254,13 @@ objects:
         containers:
         - name: reviews
           image: ${REVIEWS_V1_IMAGE}:${REVIEWS_V1_TAG}
+          securityContext:
+            allowPrivilegeEscalation: false
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+              - ALL
           imagePullPolicy: IfNotPresent
           env:
           - name: LOG_DIR
@@ -289,6 +319,13 @@ objects:
         containers:
         - name: reviews
           image: ${REVIEWS_V2_IMAGE}:${REVIEWS_V2_TAG}
+          securityContext:
+            allowPrivilegeEscalation: false
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+              - ALL
           imagePullPolicy: IfNotPresent
           env:
           - name: LOG_DIR
@@ -347,6 +384,13 @@ objects:
         containers:
         - name: reviews
           image: ${REVIEWS_V3_IMAGE}:${REVIEWS_V3_TAG}
+          securityContext:
+            allowPrivilegeEscalation: false
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+              - ALL
           imagePullPolicy: IfNotPresent
           env:
           - name: LOG_DIR
@@ -453,6 +497,13 @@ objects:
         containers:
         - name: productpage
           image: ${PRODUCTPAGE_IMAGE}:${PRODUCTPAGE_TAG}
+          securityContext:
+            allowPrivilegeEscalation: false
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+              - ALL
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 9080
