@@ -57,6 +57,14 @@ objects:
         containers:
         - name: httpbin
           image: ${HTTPBIN_IMAGE}:${HTTPBIN_TAG}
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+              - ALL
           imagePullPolicy: IfNotPresent
           env:
             - name: GUNICORN_CMD_ARGS
@@ -91,6 +99,15 @@ objects:
         volumes:
         - name: tmp
           emptyDir: {}
+
+- apiVersion: maistra.io/v1
+  kind: ServiceMeshMember
+  metadata:
+    name: default
+  spec:
+    controlPlaneRef:
+      name: basic
+      namespace: istio-system
 
 - apiVersion: networking.istio.io/v1beta1
   kind: VirtualService
