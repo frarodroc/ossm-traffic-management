@@ -58,6 +58,7 @@ objects:
         - name: details
           image: ${DETAILS_IMAGE}:${DETAILS_TAG}
           securityContext:
+            runAsNonRoot: true
             allowPrivilegeEscalation: false
             seccompProfile:
               type: RuntimeDefault
@@ -161,6 +162,7 @@ objects:
         - name: ratings
           image: ${RATINGS_IMAGE}:${RATINGS_TAG}
           securityContext:
+            runAsNonRoot: true
             allowPrivilegeEscalation: false
             seccompProfile:
               type: RuntimeDefault
@@ -255,6 +257,7 @@ objects:
         - name: reviews
           image: ${REVIEWS_V1_IMAGE}:${REVIEWS_V1_TAG}
           securityContext:
+            runAsNonRoot: true
             allowPrivilegeEscalation: false
             seccompProfile:
               type: RuntimeDefault
@@ -320,6 +323,7 @@ objects:
         - name: reviews
           image: ${REVIEWS_V2_IMAGE}:${REVIEWS_V2_TAG}
           securityContext:
+            runAsNonRoot: true
             allowPrivilegeEscalation: false
             seccompProfile:
               type: RuntimeDefault
@@ -385,6 +389,7 @@ objects:
         - name: reviews
           image: ${REVIEWS_V3_IMAGE}:${REVIEWS_V3_TAG}
           securityContext:
+            runAsNonRoot: true
             allowPrivilegeEscalation: false
             seccompProfile:
               type: RuntimeDefault
@@ -498,6 +503,7 @@ objects:
         - name: productpage
           image: ${PRODUCTPAGE_IMAGE}:${PRODUCTPAGE_TAG}
           securityContext:
+            runAsNonRoot: true
             allowPrivilegeEscalation: false
             seccompProfile:
               type: RuntimeDefault
