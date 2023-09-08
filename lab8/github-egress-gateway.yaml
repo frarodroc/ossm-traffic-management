@@ -14,4 +14,3 @@ spec:
       protocol: HTTPS
     tls:
       mode: PASSTHROUGH
-
